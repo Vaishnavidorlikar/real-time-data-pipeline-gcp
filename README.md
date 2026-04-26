@@ -17,25 +17,18 @@ Data Sources → Pub/Sub → Dataflow → BigQuery
 
 ```
 real-time-data-pipeline-gcp/
-├── data-lake-migration/          # 🆕 Streaming Data Pipeline Module
-│   ├── streaming/
-│   │   ├── pubsub_publisher.py      # Generate and publish sample events to Pub/Sub
-│   │   └── dataflow_pipeline.py     # Main Dataflow processing pipeline
-│   ├── src/
-│   │   ├── transform.py             # Data transformation logic
-│   │   └── bq_schema.py             # BigQuery schema definitions
-│   ├── config/
-│   │   └── config.yaml              # Configuration file
-│   └── dags/
-│       └── trigger_dataflow_dag.py  # Airflow orchestration
-
-├── real-time-data-pipeline-gcp/   # Existing Real-time Pipeline
-│   ├── src/                        # Source code for real-time pipeline
-│   ├── config/                     # Configuration files
-│   └── dags/                       # Airflow DAGs
-
-├── requirements.txt                # Combined dependencies
-└── README.md                      # This file
+├── streaming/
+│   ├── pubsub_publisher.py      # Generate and publish sample events to Pub/Sub
+│   └── dataflow_pipeline.py     # Main Dataflow processing pipeline
+├── src/
+│   ├── transform.py             # Data transformation logic
+│   └── bq_schema.py             # BigQuery schema definitions
+├── config/
+│   └── config.yaml              # Configuration file
+├── dags/
+│   └── trigger_dataflow_dag.py  # Airflow orchestration
+├── requirements.txt             # Python dependencies
+└── README.md                   # This file
 ```
 
 ## 🚀 Quick Start
@@ -71,10 +64,10 @@ export GCP_PROJECT_ID="your-gcp-project-id"
 export DATAFLOW_BUCKET_NAME="your-gcs-bucket"
 ```
 
-## 📊 Streaming Data Pipeline Module
+## 📊 Streaming Data Pipeline
 
 ### Overview
-The streaming data pipeline module provides a robust framework for processing events from Pub/Sub to BigQuery using Apache Beam Dataflow.
+The streaming data pipeline provides a robust framework for processing events from Pub/Sub to BigQuery using Apache Beam Dataflow.
 
 ### Key Features
 - **Real-time Streaming**: Process events as they arrive from Pub/Sub
@@ -88,11 +81,11 @@ The streaming data pipeline module provides a robust framework for processing ev
 
 #### Option 1: Direct Dataflow Execution
 ```bash
-cd data-lake-migration/streaming
+cd streaming
 python dataflow_pipeline.py \
     --project_id=$GCP_PROJECT_ID \
-    --input_subscription=projects/$GCP_PROJECT_ID/subscriptions/data-lake-migration-sub \
-    --output_table=$GCP_PROJECT_ID:data_lake_migration.events \
+    --input_subscription=projects/$GCP_PROJECT_ID/subscriptions/realtime-events-sub \
+    --output_table=$GCP_PROJECT_ID:realtime_events.events \
     --temp_location=gs://$DATAFLOW_BUCKET_NAME/temp/ \
     --staging_location=gs://$DATAFLOW_BUCKET_NAME/staging/ \
     --region=us-central1
@@ -101,7 +94,7 @@ python dataflow_pipeline.py \
 #### Option 2: Using Airflow
 ```bash
 # Copy DAG to Airflow
-cp data-lake-migration/dags/trigger_dataflow_dag.py $AIRFLOW_HOME/dags/
+cp dags/trigger_dataflow_dag.py $AIRFLOW_HOME/dags/
 
 # Set Airflow variables
 airflow variables set GCP_PROJECT_ID "your-gcp-project-id"
@@ -110,7 +103,7 @@ airflow variables set DATAFLOW_BUCKET_NAME "your-gcs-bucket"
 
 #### Option 3: Publish Test Events
 ```bash
-cd data-lake-migration/streaming
+cd streaming
 python pubsub_publisher.py
 ```
 
@@ -144,7 +137,7 @@ The pipeline processes events in the following JSON format (sample events are ge
 
 ### Streaming Pipeline Configuration
 
-The configuration is managed through `data-lake-migration/config/config.yaml`:
+The configuration is managed through `config/config.yaml`:
 
 ```yaml
 # GCP Configuration
@@ -154,7 +147,7 @@ gcp:
 
 # BigQuery Configuration
 bigquery:
-  dataset_id: "data_lake_migration"
+  dataset_id: "realtime_events"
   events_table: "events"
 
 # Dataflow Pipeline Configuration
@@ -228,7 +221,7 @@ gcloud beta emulators pubsub start
 export PUBSUB_EMULATOR_HOST=localhost:8085
 
 # Run pipeline locally
-cd data-lake-migration/streaming
+cd streaming
 python dataflow_pipeline.py --runner=DirectRunner
 ```
 

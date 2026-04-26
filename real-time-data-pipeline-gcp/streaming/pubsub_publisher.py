@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Pub/Sub Publisher for Data Lake Migration to BigQuery
+Pub/Sub Publisher for Real-time Data Pipeline
 Sends events to Google Cloud Pub/Sub topic for processing by Dataflow pipeline
 """
 
@@ -46,12 +46,12 @@ class PubSubPublisher:
                 'action': random.choice(['login', 'purchase', 'view', 'click']),
                 'value': random.uniform(1.0, 1000.0),
                 'metadata': {
-                    'source': 'azure_data_lake',
+                    'source': 'realtime_pipeline',
                     'version': '1.0',
                     'environment': 'production'
                 }
             },
-            'source_system': 'azure_data_lake',
+            'source_system': 'realtime_pipeline',
             'processing_status': 'raw'
         }
     
@@ -75,7 +75,7 @@ class PubSubPublisher:
 def main():
     # Configuration - these should be moved to config file for production
     PROJECT_ID = "your-gcp-project-id"
-    TOPIC_NAME = "data-lake-migration-events"
+    TOPIC_NAME = "realtime-events"
     
     try:
         # Initialize publisher

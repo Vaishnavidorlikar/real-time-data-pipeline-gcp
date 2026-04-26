@@ -1,4 +1,4 @@
-# Configuration for Data Lake Migration to BigQuery
+# Configuration for Real-time Data Pipeline
 # Environment-specific settings
 
 # GCP Configuration
@@ -9,7 +9,7 @@ gcp:
 
 # BigQuery Configuration
 bigquery:
-  dataset_id: "data_lake_migration"
+  dataset_id: "realtime_events"
   events_table: "events"
   location: "US"
   
@@ -25,8 +25,8 @@ bigquery:
 
 # Pub/Sub Configuration
 pubsub:
-  topic_name: "data-lake-migration-events"
-  subscription_name: "data-lake-migration-sub"
+  topic_name: "realtime-events"
+  subscription_name: "realtime-events-sub"
   
   # Publisher settings
   publisher:
@@ -43,7 +43,7 @@ pubsub:
 
 # Dataflow Pipeline Configuration
 dataflow:
-  job_name: "data-lake-migration-streaming"
+  job_name: "realtime-streaming-pipeline"
   
   # GCS locations
   temp_location: "gs://your-bucket/temp/"
@@ -67,24 +67,6 @@ dataflow:
   save_main_session: true
   setup_file: "./setup.py"
 
-# Azure Data Lake Configuration (Source)
-azure:
-  storage_account_name: "your-storage-account"
-  container_name: "raw-events"
-  
-  # Authentication
-  use_managed_identity: false
-  tenant_id: "your-tenant-id"
-  client_id: "your-client-id"
-  client_secret: "your-client-secret"
-  
-  # Data format
-  file_format: "json"
-  compression: "gzip"
-  
-  # Ingestion settings
-  batch_size: 1000
-  poll_interval_seconds: 30
 
 # Transformation Configuration
 transformation:

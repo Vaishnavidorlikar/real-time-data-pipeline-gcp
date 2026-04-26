@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Data transformation module for Data Lake Migration to BigQuery
+Data transformation module for Real-time Data Pipeline
 Handles event data transformation, enrichment, and validation
 """
 
@@ -12,7 +12,7 @@ import hashlib
 
 
 class EventTransformer:
-    """Transform events from Azure Data Lake format to BigQuery schema"""
+    """Transform events from Pub/Sub format to BigQuery schema"""
     
     def __init__(self):
         self.logger = logging.getLogger(__name__)
@@ -64,7 +64,7 @@ class EventTransformer:
             
             # Extract metadata
             metadata = data.get('metadata', {})
-            transformed['source'] = self._clean_string(metadata.get('source', 'azure_data_lake'))
+            transformed['source'] = self._clean_string(metadata.get('source', 'realtime_pipeline'))
             transformed['version'] = self._clean_string(metadata.get('version', '1.0'))
             transformed['environment'] = self._normalize_environment(metadata.get('environment'))
             

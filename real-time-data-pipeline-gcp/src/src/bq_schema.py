@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-BigQuery schema definitions for Data Lake Migration
+BigQuery schema definitions for Real-time Data Pipeline
 Defines table schemas and partitioning/clustering strategies
 """
 
@@ -35,7 +35,7 @@ TABLE_CONFIGS = {
         "partition_field": "timestamp",
         "partition_type": "DAY",
         "cluster_fields": ["event_type", "user_id", "partition_date"],
-        "description": "Main events table with streaming data from Azure Data Lake"
+        "description": "Main events table with streaming data from real-time pipeline"
     }
 }
 
@@ -86,7 +86,7 @@ if __name__ == "__main__":
     import os
     
     project_id = os.getenv("GCP_PROJECT_ID", "your-project-id")
-    dataset_id = os.getenv("BQ_DATASET", "data_lake_migration")
+    dataset_id = os.getenv("BQ_DATASET", "realtime_events")
     
     manager = BigQuerySchemaManager(project_id)
     

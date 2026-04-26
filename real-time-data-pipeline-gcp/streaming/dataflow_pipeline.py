@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Apache Beam Dataflow Pipeline for Data Lake Migration to BigQuery
+Apache Beam Dataflow Pipeline for Real-time Data Processing
 Processes streaming events from Pub/Sub and writes to BigQuery with transformations
 """
 

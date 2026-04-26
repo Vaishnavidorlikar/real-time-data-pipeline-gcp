@@ -1,0 +1,257 @@
+# Configuration for Data Lake Migration to BigQuery
+# Environment-specific settings
+
+# GCP Configuration
+gcp:
+  project_id: "your-gcp-project-id"
+  region: "us-central1"
+  zone: "us-central1-a"
+
+# BigQuery Configuration
+bigquery:
+  dataset_id: "data_lake_migration"
+  events_table: "events"
+  location: "US"
+  
+  # Table settings
+  partition_expiration_days: 365
+  default_table_expiration_days: null
+  
+  # Query optimization
+  clustering_fields:
+    - "event_type"
+    - "user_id"
+    - "partition_date"
+
+# Pub/Sub Configuration
+pubsub:
+  topic_name: "data-lake-migration-events"
+  subscription_name: "data-lake-migration-sub"
+  
+  # Publisher settings
+  publisher:
+    batch_size: 100
+    max_batch_bytes: 1000000  # 1MB
+    timeout_seconds: 60
+    
+  # Subscriber settings
+  subscriber:
+    ack_deadline_seconds: 600
+    max_lease_duration_seconds: 600
+    max_outstanding_messages: 1000
+    max_outstanding_bytes: 1000000000  # 1GB
+
+# Dataflow Pipeline Configuration
+dataflow:
+  job_name: "data-lake-migration-streaming"
+  
+  # GCS locations
+  temp_location: "gs://your-bucket/temp/"
+  staging_location: "gs://your-bucket/staging/"
+  
+  # Worker configuration
+  worker_machine_type: "n1-standard-4"
+  max_num_workers: 5
+  autoscaling_algorithm: "THROUGHPUT_BASED"
+  
+  # Streaming settings
+  streaming: true
+  batch_size: 100
+  max_buffer_size_mb: 100
+  
+  # Monitoring
+  enable_cloud_logging: true
+  enable_cloud_monitoring: true
+  
+  # Pipeline options
+  save_main_session: true
+  setup_file: "./setup.py"
+
+# Azure Data Lake Configuration (Source)
+azure:
+  storage_account_name: "your-storage-account"
+  container_name: "raw-events"
+  
+  # Authentication
+  use_managed_identity: false
+  tenant_id: "your-tenant-id"
+  client_id: "your-client-id"
+  client_secret: "your-client-secret"
+  
+  # Data format
+  file_format: "json"
+  compression: "gzip"
+  
+  # Ingestion settings
+  batch_size: 1000
+  poll_interval_seconds: 30
+
+# Transformation Configuration
+transformation:
+  # Event type mappings
+  event_type_mappings:
+    "user_activity": "USER_ACTIVITY"
+    "transaction": "TRANSACTION"
+    "system_log": "SYSTEM_LOG"
+    "metric": "METRIC"
+  
+  # Valid actions
+  valid_actions:
+    - "login"
+    - "logout"
+    - "purchase"
+    - "view"
+    - "click"
+    - "search"
+    - "add_to_cart"
+    - "remove_from_cart"
+    - "checkout"
+  
+  # Data quality rules
+  validation:
+    max_event_age_hours: 24
+    required_fields:
+      - "event_id"
+      - "event_type"
+      - "timestamp"
+    optional_fields:
+      - "user_id"
+      - "session_id"
+      - "action"
+      - "value"
+  
+  # Enrichment
+  enrichment:
+    add_partition_date: true
+    add_event_hash: true
+    calculate_latency: true
+
+# Monitoring and Alerting
+monitoring:
+  # Metrics collection
+  collect_metrics: true
+  metrics_interval_seconds: 60
+  
+  # Alert thresholds
+  alerts:
+    processing_latency_threshold_ms: 5000
+    error_rate_threshold_percent: 5.0
+    throughput_threshold_events_per_minute: 100
+    queue_depth_threshold: 10000
+  
+  # Notification settings
+  notifications:
+    email_enabled: true
+    email_recipients:
+      - "admin@yourcompany.com"
+    slack_webhook_url: "https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK"
+    
+  # Dashboard settings
+  dashboard:
+    refresh_interval_minutes: 5
+    retention_days: 30
+
+# Security Configuration
+security:
+  # IAM roles
+  required_roles:
+    - "roles/bigquery.dataEditor"
+    - "roles/pubsub.publisher"
+    - "roles/pubsub.subscriber"
+    - "roles/dataflow.worker"
+    - "roles/storage.objectViewer"
+  
+  # Network settings
+  network:
+    enable_private_ip: false
+    use_public_ips: true
+    
+  # Encryption
+  encryption:
+    kms_key_name: null  # Set to customer-managed key if needed
+
+# Development Configuration
+development:
+  # Local settings
+  local:
+    use_emulator: false
+    emulator_host: "localhost:8085"
+    
+  # Testing
+  testing:
+    generate_sample_data: true
+    sample_event_count: 1000
+    test_subscription: "test-data-lake-migration-sub"
+    
+  # Debugging
+  debug:
+    log_level: "INFO"
+    enable_debug_mode: false
+    print_event_details: false
+
+# Performance Tuning
+performance:
+  # BigQuery settings
+  bigquery:
+    query_priority: "INTERACTIVE"
+    maximum_bytes_billed: "10000000000"  # 10GB
+    
+  # Dataflow settings
+  dataflow:
+    disk_size_gb: 30
+    enable_worker_harness: true
+    
+  # Memory settings
+  memory:
+    max_heap_size_mb: 4096
+    gc_algorithm: "G1GC"
+
+# Cost Management
+cost:
+  # Budget alerts
+  budget:
+    monthly_budget_usd: 1000
+    alert_threshold_percent: 80
+    
+  # Cost optimization
+  optimization:
+    enable_auto_terminate_idle_jobs: true
+    idle_timeout_minutes: 30
+    use_preemptible_workers: false
+    
+  # Resource quotas
+  quotas:
+    max_concurrent_jobs: 5
+    max_total_workers: 50
+
+# Environment-specific overrides
+environments:
+  development:
+    gcp:
+      project_id: "dev-project-id"
+    dataflow:
+      max_num_workers: 2
+      worker_machine_type: "n1-standard-2"
+    monitoring:
+      alerts:
+        processing_latency_threshold_ms: 10000
+        
+  staging:
+    gcp:
+      project_id: "staging-project-id"
+    dataflow:
+      max_num_workers: 3
+      worker_machine_type: "n1-standard-4"
+      
+  production:
+    gcp:
+      project_id: "prod-project-id"
+    dataflow:
+      max_num_workers: 10
+      worker_machine_type: "n1-standard-8"
+      enable_cloud_logging: true
+      enable_cloud_monitoring: true
+    security:
+      network:
+        enable_private_ip: true
+        use_public_ips: false

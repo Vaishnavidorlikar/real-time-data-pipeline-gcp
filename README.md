@@ -370,7 +370,7 @@ For support and questions:
 
 ---
 
-**Built with ❤️ by the Data Engineering Team**
+**Built with ❤️ by Vaishnavi Dorlikar**
 
 ## 🌟 Features
 

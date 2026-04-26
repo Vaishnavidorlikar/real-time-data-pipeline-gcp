@@ -27,11 +27,17 @@ real-time-data-pipeline-gcp/
 │   └── config.yaml              # Configuration file
 ├── dags/
 │   └── trigger_dataflow_dag.py  # Airflow orchestration
+├── realtime_pipeline_colab.ipynb # 🧪 Google Colab interactive demo
 ├── requirements.txt             # Python dependencies
 └── README.md                   # This file
 ```
 
 ## 🚀 Quick Start
+
+### 🧪 Try it in Google Colab (Recommended)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Vaishnavidorlikar/real-time-data-pipeline-gcp/blob/main/realtime_pipeline_colab.ipynb)
+
+**Click the badge above to run the complete pipeline demo in your browser - no setup required!**
 
 ### Prerequisites
 

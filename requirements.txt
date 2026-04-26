@@ -1,8 +1,7 @@
-# Core dependencies for Real-time Data Pipeline and Data Lake Migration
+# Core dependencies for Real-time Data Pipeline
 
 # Apache Beam and Dataflow
 apache-beam[gcp]==2.53.0
-google-cloud-dataflow==2.13.0
 
 # Google Cloud Platform
 google-cloud-pubsub==2.19.0
@@ -27,10 +26,6 @@ python-dotenv==1.0.0
 click==8.1.7
 rich==13.7.0
 
-# Azure integration (for source data)
-azure-storage-blob==12.19.0
-azure-identity==1.15.0
-azure-mgmt-storage==21.1.0
 
 # Monitoring and observability
 prometheus-client==0.19.0

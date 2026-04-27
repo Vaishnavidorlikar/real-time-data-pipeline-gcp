@@ -28,6 +28,7 @@ real-time-data-pipeline-gcp/
 ├── dags/
 │   └── trigger_dataflow_dag.py  # Airflow orchestration
 ├── realtime_pipeline_colab.ipynb # 🧪 Google Colab interactive demo
+├── cloud_monitoring_dashboard.md # 📊 Cloud Monitoring dashboard guide
 ├── requirements.txt             # Python dependencies
 └── README.md                   # This file
 ```
@@ -38,6 +39,21 @@ real-time-data-pipeline-gcp/
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Vaishnavidorlikar/real-time-data-pipeline-gcp/blob/main/realtime_pipeline_colab.ipynb)
 
 **Click the badge above to run the complete pipeline demo in your browser - no setup required!**
+
+### 📊 Monitor with Cloud Monitoring Dashboard
+Create a comprehensive dashboard to monitor your real-time pipeline performance:
+
+📖 **[📊 Cloud Monitoring Dashboard Guide](cloud_monitoring_dashboard.md)** - Complete setup instructions for project `leafy-tractor-277020`
+
+**Dashboard Features:**
+- Real-time metrics monitoring
+- Processing latency tracking
+- System health indicators
+- Alert configuration
+- Auto-refresh every 1 minute
+
+**🔗 Direct Dashboard URL:**
+https://console.cloud.google.com/monitoring/dashboards/builder/fb490153-185c-4590-b82a-0d0663d33950
 
 ### Prerequisites
 

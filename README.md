@@ -2,7 +2,7 @@
 
 A comprehensive data engineering solution featuring real-time streaming data processing on Google Cloud Platform.
 
-## 🏗️ Architecture Overview
+## Architecture Overview
 
 ### Streaming Data Pipeline
 ```
@@ -13,7 +13,7 @@ Data Sources → Pub/Sub → Dataflow → BigQuery
 
 **Note**: This is a generic streaming pipeline that processes events from Pub/Sub. The current implementation generates sample events for testing purposes.
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 real-time-data-pipeline-gcp/
@@ -27,23 +27,23 @@ real-time-data-pipeline-gcp/
 │   └── config.yaml              # Configuration file
 ├── dags/
 │   └── trigger_dataflow_dag.py  # Airflow orchestration
-├── realtime_pipeline_colab.ipynb # 🧪 Google Colab interactive demo
-├── cloud_monitoring_dashboard.md # 📊 Cloud Monitoring dashboard guide
+├── realtime_pipeline_colab.ipynb # Google Colab interactive demo
+├── cloud_monitoring_dashboard.md # Cloud Monitoring dashboard guide
 ├── requirements.txt             # Python dependencies
 └── README.md                   # This file
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
-### 🧪 Try it in Google Colab (Recommended)
+### Try it in Google Colab (Recommended)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Vaishnavidorlikar/real-time-data-pipeline-gcp/blob/main/realtime_pipeline_colab.ipynb)
 
 **Click the badge above to run the complete pipeline demo in your browser - no setup required!**
 
-### 📊 Monitor with Cloud Monitoring Dashboard
+### Monitor with Cloud Monitoring Dashboard
 Create a comprehensive dashboard to monitor your real-time pipeline performance:
 
-📖 **[📊 Cloud Monitoring Dashboard Guide](cloud_monitoring_dashboard.md)** - Complete setup instructions for project `leafy-tractor-277020`
+**[Cloud Monitoring Dashboard Guide](cloud_monitoring_dashboard.md)** - Complete setup instructions for project `leafy-tractor-277020`
 
 **Dashboard Features:**
 - Real-time metrics monitoring
@@ -52,8 +52,8 @@ Create a comprehensive dashboard to monitor your real-time pipeline performance:
 - Alert configuration
 - Auto-refresh every 1 minute
 
-**🔗 Direct Dashboard URL:**
-https://console.cloud.google.com/monitoring/dashboards/builder/fb490153-185c-4590-b82a-0d0663d33950
+**Direct Dashboard URL:**
+Available in Cloud Monitoring dashboard (contact for access)
 
 ### Prerequisites
 
@@ -86,7 +86,7 @@ export GCP_PROJECT_ID="your-gcp-project-id"
 export DATAFLOW_BUCKET_NAME="your-gcs-bucket"
 ```
 
-## 📊 Streaming Data Pipeline
+## Streaming Data Pipeline
 
 ### Overview
 The streaming data pipeline provides a robust framework for processing events from Pub/Sub to BigQuery using Apache Beam Dataflow.
@@ -155,7 +155,7 @@ The pipeline processes events in the following JSON format (sample events are ge
 
 **Note**: The current implementation generates sample events for testing. To process real data, you need to publish events to the configured Pub/Sub topic in this format.
 
-## 🔧 Configuration
+## Configuration
 
 ### Streaming Pipeline Configuration
 
@@ -190,7 +190,7 @@ monitoring:
 - `staging`: Medium scale, testing environment  
 - `production`: Full scale, optimized for performance
 
-## 📈 Monitoring and Observability
+## Monitoring and Observability
 
 ### Metrics Tracked
 - **Processing Latency**: Time from event creation to processing
@@ -208,7 +208,7 @@ monitoring:
 - **Slack**: Real-time notifications
 - **PagerDuty**: Emergency alerts (configurable)
 
-## 🛠️ Development
+## Development
 
 ### Running Tests
 ```bash
@@ -247,7 +247,7 @@ cd streaming
 python dataflow_pipeline.py --runner=DirectRunner
 ```
 
-## 🔒 Security
+## Security
 
 ### IAM Roles Required
 - `roles/bigquery.dataEditor`
@@ -261,7 +261,7 @@ python dataflow_pipeline.py --runner=DirectRunner
 - **At Rest**: Google Cloud-managed encryption keys
 - **Optional**: Customer-managed encryption keys (CMEK)
 
-## 📋 Performance Optimization
+## Performance Optimization
 
 ### BigQuery Optimization
 - **Partitioning**: Daily partitioning on `timestamp`
@@ -278,7 +278,7 @@ python dataflow_pipeline.py --runner=DirectRunner
 - **Resource Quotas**: Control resource usage
 - **Idle Termination**: Auto-terminate inactive jobs
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -312,7 +312,7 @@ WHERE creation_time > TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 HOUR)
 ORDER BY total_bytes_processed DESC LIMIT 10;
 ```
 
-## 📚 API Reference
+## API Reference
 
 ### Key Classes
 
@@ -332,7 +332,7 @@ manager = BigQuerySchemaManager(project_id)
 manager.create_all_tables(dataset_id)
 ```
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch: `git checkout -b feature/new-feature`
@@ -346,18 +346,18 @@ manager.create_all_tables(dataset_id)
 - Add type hints for all functions
 - Include docstrings for all modules and classes
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 🆘 Support
+## Support
 
 For support and questions:
 - **Documentation**: Check this README and inline code comments
 - **Issues**: Create an issue in the project repository
 - **Email**: Contact the data engineering team
 
-## 🔄 Version History
+## Version History
 
 ### Streaming Pipeline Module
 - **v1.0.0**: Initial release with core streaming pipeline
@@ -370,7 +370,7 @@ For support and questions:
 - **v2.1.0**: Added advanced analytics features
 - **v2.2.0**: Improved monitoring and observability
 
-## 📊 Benchmarks
+## Benchmarks
 
 ### Performance Metrics
 - **Throughput**: Up to 10,000 events/second
@@ -385,11 +385,11 @@ For support and questions:
 
 ---
 
-**Built with ❤️ by Vaishnavi Dorlikar**
+**Built by Vaishnavi Dorlikar**
 
-## 🌟 Features
+## Features
 
-### ✅ Streaming Pipeline Module
+### Streaming Pipeline Module
 - [x] Streaming data processing with Apache Beam
 - [x] Real-time event transformation and validation
 - [x] BigQuery integration with partitioning and clustering
@@ -400,7 +400,7 @@ For support and questions:
 - [x] Performance optimization and cost controls
 - [x] Sample data generation for testing
 
-### ✅ Real-time Pipeline Module
+### Real-time Pipeline Module
 - [x] Real-time data ingestion and processing
 - [x] Advanced analytics and ML capabilities
 - [x] Comprehensive monitoring and observability

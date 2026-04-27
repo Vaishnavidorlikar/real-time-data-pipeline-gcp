@@ -1,7 +1,7 @@
 # Core dependencies for Real-time Data Pipeline
 
 # Apache Beam and Dataflow
-apache-beam[gcp]==2.53.0
+apache-beam[gcp]==2.52.0
 
 # Google Cloud Platform
 google-cloud-pubsub==2.19.0

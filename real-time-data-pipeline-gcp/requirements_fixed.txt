@@ -1,0 +1,67 @@
+# Core dependencies for Real-time Data Pipeline (FIXED VERSION)
+
+# Google Cloud Platform (install these first)
+google-cloud-pubsub==2.19.0
+google-cloud-bigquery==3.13.0
+google-cloud-storage==2.10.0
+google-auth==2.25.2
+google-cloud-logging==3.5.0
+google-cloud-monitoring==2.15.0
+
+# Data processing
+pandas==2.1.4
+numpy==1.24.3
+pyarrow==14.0.1
+
+# Configuration and utilities
+PyYAML==6.0.1
+python-dotenv==1.0.0
+click==8.1.7
+rich==13.7.0
+
+# Testing and development
+pytest==7.4.3
+pytest-mock==3.12.0
+pytest-cov==4.1.0
+pytest-asyncio==0.21.1
+pytest-xdist==3.5.0
+
+# Code quality
+black==23.11.0
+flake8==6.1.0
+isort==5.12.0
+mypy==1.7.1
+
+# Security and validation
+cryptography==41.0.8
+jsonschema==4.20.0
+cerberus==1.3.5
+
+# Performance and optimization
+ujson==5.8.0
+orjson==3.9.10
+
+# Logging and debugging
+structlog==23.2.0
+colorlog==6.8.0
+
+# HTTP and networking
+requests==2.31.0
+httpx==0.25.2
+urllib3==2.1.0
+
+# Date and time handling
+python-dateutil==2.8.2
+pytz==2023.3
+
+# Version pinning for stability
+setuptools==69.0.3
+wheel==0.42.0
+pip==23.3.2
+
+# Apache Beam (install separately after above)
+# Note: apache-beam[gcp] may have build issues, use pre-compiled version if needed
+# apache-beam==2.52.0
+
+# Optional: For full Dataflow functionality
+# Install with: pip install apache-beam[gcp]==2.52.0 --no-build-isolation

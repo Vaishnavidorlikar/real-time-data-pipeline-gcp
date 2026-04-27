@@ -1,21 +1,21 @@
-# 📊 Google Cloud Monitoring Dashboard Setup
+# Google Cloud Monitoring Dashboard Setup
 
 This guide helps you create a comprehensive Cloud Monitoring dashboard for your real-time data pipeline using Google Cloud Monitoring.
 
-## 🔗 Quick Access
-- **Cloud Monitoring**: https://console.cloud.google.com/monitoring
+## Quick Access
+- **Cloud Monitoring**: Access via Google Cloud Console
 - **Your Project**: `leafy-tractor-277020`
-- **Dashboard URL**: https://console.cloud.google.com/monitoring/dashboards/builder/fb490153-185c-4590-b82a-0d0663d33950
+- **Dashboard URL**: Requires authentication - access via Cloud Console
 - **Account**: dorlikarvaishnavi@gmail.com
 
-## 🚀 Step-by-Step Setup
+## Step-by-Step Setup
 
 ### 1. Access Cloud Monitoring Dashboard
 
-1. **Open Cloud Console**: https://console.cloud.google.com/
+1. **Open Cloud Console**: Navigate to Google Cloud Console
 2. **Select Project**: `leafy-tractor-277020`
-3. **Navigate to Monitoring**: https://console.cloud.google.com/monitoring
-4. **Go to Dashboards**: https://console.cloud.google.com/monitoring/dashboards
+3. **Navigate to Monitoring**: Go to Monitoring section in Cloud Console
+4. **Go to Dashboards**: Navigate to Dashboards in Monitoring
 5. **Create New Dashboard**: Click "Create Dashboard"
 
 ### 2. Dashboard Configuration
@@ -29,9 +29,9 @@ Dashboard Settings:
   Time Range: Last 1 hour (default)
 ```
 
-## 📊 Widget Creation Guide
+## Widget Creation Guide
 
-### **🚀 Quick Start - Create These Widgets:**
+### **Quick Start - Create These Widgets:**
 
 #### **Widget 1: Event Processing Rate (Line Chart)**
 1. **Click "Add Widget"** → "Line chart"
@@ -105,7 +105,7 @@ Dashboard Settings:
 4. **Title**: "Memory Utilization"
 5. **Range**: 0-100%
 
-### **🎨 Layout Configuration:**
+### **Layout Configuration:**
 
 **Row 1 (KPI Cards - 4 columns):**
 - Widget 3: Pub/Sub Queue Depth
@@ -124,7 +124,7 @@ Dashboard Settings:
 - Widget 7: CPU Utilization
 - Widget 8: Memory Utilization
 
-### **🔧 Advanced Widget Configurations:**
+### **Advanced Widget Configurations:**
 
 #### **Custom Metrics Widget (if needed):**
 ```bash
@@ -148,7 +148,7 @@ gcloud monitoring metrics descriptor create \
 3. **Metric**: `logging.googleapis.com/user/pipeline_errors`
 4. **Title**: "Pipeline Errors from Logs"
 
-### **⚡ Quick Widget Setup Commands:**
+### **Quick Widget Setup Commands:**
 
 ```bash
 # Enable required APIs
@@ -162,7 +162,7 @@ gcloud monitoring notification-channels create \
   --channel-labels="email_address=dorlikarvaishnavi@gmail.com"
 ```
 
-### **📱 Widget Styling Tips:**
+### **Widget Styling Tips:**
 
 1. **Color Scheme**: Use Google Cloud colors (Blue #4285F4, Green #34A853, Red #EA4335)
 2. **Font Size**: Keep titles readable (12-14px minimum)
@@ -170,18 +170,21 @@ gcloud monitoring notification-channels create \
 4. **Time Range**: Use consistent time ranges across widgets
 5. **Refresh Rate**: Set to 1 minute for real-time monitoring
 
-### **🔗 Direct Dashboard URL:**
-**Access your dashboard here:**
-https://console.cloud.google.com/monitoring/dashboards/builder/fb490153-185c-4590-b82a-0d0663d33950
+### **Dashboard Access:**
+**Access your dashboard via Google Cloud Console:**
+1. Navigate to Cloud Console
+2. Select project: `leafy-tractor-277020`
+3. Go to Monitoring → Dashboards
+4. Find your dashboard in the list
 
 **Steps:**
-1. Open the URL above
+1. Follow the navigation steps above
 2. Click "Add Widget" for each widget
 3. Follow the configurations listed
 4. Save the dashboard
 5. Test with live pipeline data
 
-## 📊 Dashboard Layout Design
+## Dashboard Layout Design
 
 ### Header Section
 - **Title**: Real-time Data Pipeline Monitoring
@@ -234,7 +237,7 @@ https://console.cloud.google.com/monitoring/dashboards/builder/fb490153-185c-459
 - **Resource**: BigQuery dataset "realtime_events"
 - **Aggregation**: Latest value
 
-## 🔧 Custom Metrics Setup
+## Custom Metrics Setup
 
 ### Create Custom Metrics for Pipeline
 
@@ -287,7 +290,7 @@ send_custom_metric("leafy-tractor-277020",
                   150.5)
 ```
 
-## 📋 Predefined Cloud Monitoring Metrics
+## Predefined Cloud Monitoring Metrics
 
 ### Dataflow Metrics
 ```yaml
@@ -331,7 +334,7 @@ Compute Engine Metrics:
   - compute.googleapis.com/instance/network/sent_bytes_count
 ```
 
-## ⚡ Alert Configuration
+## Alert Configuration
 
 ### Create Alert Policies
 
@@ -382,7 +385,7 @@ gcloud monitoring notification-channels create \
 gcloud monitoring notification-channels list --project=leafy-tractor-277020
 ```
 
-## 🎨 Dashboard Styling and Configuration
+## Dashboard Styling and Configuration
 
 ### Chart Configuration Examples
 
@@ -431,7 +434,7 @@ Chart Settings:
   Color: Red
 ```
 
-## 📱 Mobile and Sharing Configuration
+## Mobile and Sharing Configuration
 
 ### Dashboard Sharing
 ```yaml
@@ -448,7 +451,7 @@ Sharing Settings:
 - Simplified view for small screens
 - Essential metrics prioritized
 
-## 🔍 Advanced Features
+## Advanced Features
 
 ### Log-Based Metrics
 ```bash
@@ -488,7 +491,7 @@ gcloud monitoring uptime-checks create \
   --selected-regions="us-central1"
 ```
 
-## 📊 Dashboard JSON Configuration
+## Dashboard JSON Configuration
 
 ### Export/Import Dashboard Configuration
 
@@ -529,10 +532,10 @@ gcloud monitoring uptime-checks create \
 }
 ```
 
-## 🚀 Deployment Steps
+## Deployment Steps
 
 ### 1. Create Dashboard
-1. **Navigate**: https://console.cloud.google.com/monitoring/dashboards
+1. **Navigate**: Go to Cloud Console → Monitoring → Dashboards
 2. **Create New**: Click "Create Dashboard"
 3. **Name**: "Real-time Data Pipeline Monitoring"
 4. **Add Widgets**: Follow the layout design above
@@ -551,7 +554,7 @@ gcloud monitoring uptime-checks create \
 3. **Test Alerts**: Trigger test alerts to ensure notifications work
 4. **Review Performance**: Ensure dashboard loads quickly and updates properly
 
-## 🔧 Integration with Pipeline Code
+## Integration with Pipeline Code
 
 ### Add Monitoring to Python Pipeline
 
@@ -600,7 +603,7 @@ monitor.record_latency(latency)
 monitor.record_event_processed("user_activity")
 ```
 
-## 📞 Support and Resources
+## Support and Resources
 
 ### Documentation Links
 - **Cloud Monitoring**: https://cloud.google.com/monitoring/docs
@@ -612,11 +615,11 @@ monitor.record_event_processed("user_activity")
 - **Project ID**: leafy-tractor-277020
 - **Account**: dorlikarvaishnavi@gmail.com
 - **Region**: us-central1 (recommended)
-- **Dashboard URL**: https://console.cloud.google.com/monitoring/dashboards/builder/fb490153-185c-4590-b82a-0d0663d33950
+- **Dashboard URL**: Access via Cloud Console → Monitoring → Dashboards
 
 ---
 
-## 🎉 Next Steps
+## Next Steps
 
 1. **Access Dashboard**: Use the provided URL to access your monitoring dashboard
 2. **Configure Metrics**: Set up the custom metrics and charts as described

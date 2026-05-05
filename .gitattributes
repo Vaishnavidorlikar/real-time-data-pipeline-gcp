@@ -1,0 +1,6 @@
+# GitHub Linguist configuration
+# Treat Jupyter notebooks as documentation, not code
+*.ipynb linguist-documentation
+
+# Ensure Python files are detected
+*.py linguist-language=Python

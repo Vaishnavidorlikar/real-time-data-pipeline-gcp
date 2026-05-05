@@ -31,22 +31,45 @@ A comprehensive **real-time streaming data pipeline** using Google Cloud Platfor
 - **Resource Management** - Auto-scaling capabilities
 - **Cost Optimization** - Efficient resource utilization
 
+## Installation
+
+This is a Python project. Install dependencies using:
+
+```bash
+pip install -e .
+```
+
+For development (including Jupyter notebooks):
+
+```bash
+pip install -e ".[dev]"
+```
+
 ## Project Structure
 
 ```
 real-time-data-pipeline-gcp/
-├── notebooks/
-│   └── realtime_pipeline_colab.ipynb # Live demo notebook
-├── streaming/
-│   ├── pubsub_publisher.py        # Event publishing
-│   ├── dataflow_pipeline.py       # Stream processing
-│   └── config/                    # Pipeline configuration
-├── dags/
-│   └── composer_pipeline.py       # Airflow orchestration
+├── pyproject.toml               # Python project configuration
+├── requirements.txt             # Dependencies
+├── requirements_fixed.txt       # Fixed version dependencies
+├── .gitattributes               # GitHub linguist configuration
 ├── config/
-│   ├── monitoring_dashboard.json  # Dashboard config
-│   └── looker_studio_config.json  # Visualization config
-└── requirements.txt               # Dependencies
+│   └── config.yaml              # Pipeline configuration
+├── dags/
+│   ├── composer_pipeline.py     # Airflow orchestration
+│   └── trigger_dataflow_dag.py
+├── src/
+│   ├── transform.py
+│   └── bq_schema.py
+├── streaming/
+│   ├── dataflow_pipeline.py     # Stream processing
+│   └── pubsub_publisher.py      # Event publishing
+├── notebooks/
+│   ├── realtime_pipeline_colab.ipynb     # Live demo notebook
+│   └── realtime_pipeline_dashboard.ipynb # Dashboard notebook
+└── docs/
+    ├── README_COMPOSER.md       # Composer-specific docs
+    └── cloud_monitoring_dashboard.md     # Monitoring documentation
 ```
 
 ## Quick Start

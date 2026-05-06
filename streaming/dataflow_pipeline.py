@@ -12,6 +12,7 @@ from typing import Dict, Any, List
 import apache_beam as beam
 from apache_beam.options.pipeline_options import PipelineOptions, StandardOptions, SetupOptions
 from apache_beam.io.gcp.bigquery import WriteToBigQuery, BigQueryDisposition
+from apache_beam.io.gcp.internal.clients import bigquery
 from apache_beam.io.gcp.pubsub import ReadFromPubSub
 
 
@@ -125,6 +126,11 @@ class DataflowPipelineOptions(PipelineOptions):
             type=int,
             help='Batch size for BigQuery writes'
         )
+        parser.add_argument(
+            '--requirements_file',
+            default='requirements.txt',
+            help='Requirements file for Dataflow worker dependencies'
+        )
 
 
 def run_pipeline(options: DataflowPipelineOptions) -> None:
@@ -192,10 +198,10 @@ def main():
     # Set streaming option
     pipeline_options.view_as(StandardOptions).streaming = True
     
-    # Set setup file for dependencies
-    pipeline_options.view_as(SetupOptions).setup_file = './setup.py'
+    # Use requirements.txt for Dataflow worker dependencies
+    pipeline_options.view_as(SetupOptions).requirements_file = 'requirements.txt'
     
-    # Save main session
+    # Save main session for custom DoFn classes
     pipeline_options.view_as(SetupOptions).save_main_session = True
     
     try:

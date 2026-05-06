@@ -89,7 +89,6 @@ with beam.Pipeline(options=options) as p:
 - Partitioned BigQuery writes for efficient analytics
 - Monitoring-ready with Cloud Logging and Cloud Monitoring
 
-![Architecture diagram](architecture-diagram.png)
 <img width="2704" height="552" alt="image" src="https://github.com/user-attachments/assets/99f2850b-bd4a-4ff8-ba81-84cd624aa906" />
 
 

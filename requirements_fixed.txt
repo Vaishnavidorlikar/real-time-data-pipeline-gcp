@@ -1,4 +1,12 @@
 # Core dependencies for Real-time Data Pipeline (FIXED VERSION)
+#
+# FIXED: apache-beam[gcp] is now an active dependency instead of being
+# left commented out. Without it, streaming/dataflow_pipeline.py cannot
+# even be imported, since it does `import apache_beam as beam`.
+
+# Apache Beam with GCP extras (Pub/Sub, BigQuery, GCS I/O) - required by
+# streaming/dataflow_pipeline.py
+apache-beam[gcp]==2.52.0
 
 # Google Cloud Platform (install these first)
 google-cloud-pubsub==2.19.0
@@ -59,9 +67,6 @@ setuptools==69.0.3
 wheel==0.42.0
 pip==23.3.2
 
-# Apache Beam (install separately after above)
-# Note: apache-beam[gcp] may have build issues, use pre-compiled version if needed
-# apache-beam==2.52.0
-
-# Optional: For full Dataflow functionality
-# Install with: pip install apache-beam[gcp]==2.52.0 --no-build-isolation
+# Kaggle support (used optionally by producer/pubsub_producer.py
+# --kaggle_dataset / --kaggle_file flags)
+kaggle==1.6.6
